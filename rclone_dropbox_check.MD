@@ -1,10 +1,10 @@
  Ein script der Prüft, ob der rclone-Mount noch aktiv ist, und ihn bei Bedarf neu startet.
 
-Hier ist ein fertiges Beispiel, das du einfach als `/usr/local/bin/rclone-dropbox-check.sh` speichern kannst:
+Hier ist ein fertiges Beispiel, das du einfach als `/usr/local/bin/rclone_dropbox_check.sh` speichern kannst:
 
 ```bash
 #!/bin/bash
-# rclone-dropbox-check.sh
+# rclone_dropbox_check.sh
 # Health-Check für rclone Dropbox Mount
 # Prüft, ob /media/dropbox gemountet ist, startet Service neu wenn nicht
 
@@ -34,7 +34,7 @@ fi
 1. Skript erstellen:
 
 ```bash
-sudo nano /usr/local/bin/rclone-dropbox-check.sh
+sudo nano /usr/local/bin/rclone_dropbox_check.sh
 ```
 
 * Inhalt einfügen, speichern und schließen.
@@ -42,7 +42,7 @@ sudo nano /usr/local/bin/rclone-dropbox-check.sh
 2. Ausführbar machen:
 
 ```bash
-sudo chmod +x /usr/local/bin/rclone-dropbox-check.sh
+sudo chmod +x /usr/local/bin/rclone_dropbox_check.sh
 ```
 
 3. Optional: Cronjob einrichten, damit das Skript alle 5 Minuten läuft:
@@ -54,9 +54,9 @@ sudo crontab -e
 * Folgende Zeile hinzufügen:
 
 ```
-*/5 * * * * /usr/local/bin/rclone-dropbox-check.sh >> /var/log/rclone-dropbox-check.log 2>&1
+*/5 * * * * /usr/local/bin/rclone_dropbox_check.sh >> /var/log/rclone_dropbox_check.log 2>&1
 ```
 
-* Das schreibt die Logs in `/var/log/rclone-dropbox-check.log` und prüft alle 5 Minuten den Mount.
+* Das schreibt die Logs in `/var/log/rclone_dropbox_check.log` und prüft alle 5 Minuten den Mount.
 
 ---
