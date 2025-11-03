@@ -32,7 +32,7 @@ sudo groupadd dropbox
 
 ```bash
 sudo usermod -aG dropbox pi
-sudo usermod -aG dropbox jogi
+sudo usermod -aG dropbox dein Benutzer
 ```
 
 > Hinweis: Alle Benutzer, die über Samba auf Dropbox zugreifen sollen, müssen Mitglied dieser Gruppe sein.
@@ -149,7 +149,7 @@ sudo nano /etc/samba/smb.conf
    path = /media/dropbox
    browseable = yes
    writable = yes
-   valid users = jogi, pi
+   valid users = dein Benutzer, pi
    force group = dropbox
    create mask = 0664
    directory mask = 2775
@@ -159,7 +159,7 @@ sudo nano /etc/samba/smb.conf
 2. Samba-User prüfen oder hinzufügen:
 
 ```bash
-sudo smbpasswd -a jogi
+sudo smbpasswd -a dein Benutzer
 sudo smbpasswd -a pi
 ```
 
