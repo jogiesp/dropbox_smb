@@ -3,6 +3,7 @@
 ## Inhaltsverzeichnis
 - [Einleitung](#einleitung)
 - [Voraussetzungen](#voraussetzungen)
+- [Schritt 0: Dropbox-Gruppe und Benutzer einrichten](#schritt-0-dropbox-gruppe-und-benutzer-einrichten)
 - [Schritt 1: Rclone Installation](#schritt-1-rclone-installation)
 - [Schritt 2: Dropbox Remote einrichten](#schritt-2-dropbox-remote-einrichten)
 - [Schritt 3: Systemd-Service für automatisches Mounten](#schritt-3-systemd-service-für-automatisches-mounten)
@@ -20,11 +21,21 @@ Diese Anleitung zeigt, wie man Dropbox unter Linux mit **rclone** mountet, die B
 - Samba installiert: `sudo apt install samba`
 - Rclone installiert: `sudo apt install rclone`
 - Benutzer `pi` oder andere Netzwerkbenutzer
-- Gruppe `dropbox` erstellen und Benutzer hinzufügen:
+
+## Schritt 0: Dropbox-Gruppe und Benutzer einrichten
+1. Gruppe `dropbox` erstellen:
 ```bash
 sudo groupadd dropbox
-sudo usermod -aG dropbox pi
 ````
+
+2. Benutzer zu dieser Gruppe hinzufügen:
+
+```bash
+sudo usermod -aG dropbox pi
+sudo usermod -aG dropbox jogi
+```
+
+> Hinweis: Alle Benutzer, die über Samba auf Dropbox zugreifen sollen, müssen Mitglied dieser Gruppe sein.
 
 ## Schritt 1: Rclone Installation
 
@@ -96,6 +107,8 @@ StartLimitIntervalSec=0
 [Install]
 WantedBy=multi-user.target
 ```
+
+> Hinweis: `--gid 1006` muss die GID der Gruppe `dropbox` sein. Prüfen mit `getent group dropbox`.
 
 3. Service aktivieren und starten:
 
